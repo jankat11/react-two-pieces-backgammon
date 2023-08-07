@@ -1,18 +1,17 @@
 import { Row, Col } from "react-bootstrap";
 import Piece from "./Piece";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   columnRange,
   upBoardCoulumnRange,
   bottomBoardCoulumnRange,
 } from "./utility";
 
-const whiteInitital = { color: "white", position: 1 };
-const blackInitital = { color: "black", position: 24 };
 
-const Board = () => {
-  const [whitePiece, setWhitePiece] = useState(whiteInitital);
-  const [blackPiece, setBlackPiece] = useState(blackInitital);
+
+const Board = ({whitePiece, blackPiece}) => {
+
 
   const setPosition = (colIndex) => {
     return (
@@ -76,4 +75,12 @@ const Board = () => {
       </Row>
   );
 };
+
+
+Board.propTypes = {
+  whitePiece: PropTypes.object,
+  blackPiece: PropTypes.object
+};
+
+
 export default Board;
