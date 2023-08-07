@@ -7,5 +7,8 @@ export const bottomBoardCoulumnRange = Array.from(
   { length: columnRange },
   (_, i) => i + 1 + columnRange
 );
+export const newDice = () => {
+  return Math.ceil(Math.random() * 6)
+}
 
 

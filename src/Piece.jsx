@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const Piece = ({ color, direction }) => {
   useEffect(() => {
-    console.log(color);
   }, [color]);
 
   return (
