@@ -114,10 +114,10 @@ const PlayButtons = ({
   };
 
   return (
-    <article className="button-container my-3 d-flex w-100 justify-content-center flex-column">
+    <article className="button-container position-relative my-3 d-flex w-100 justify-content-center flex-column">
       {isSimulate && (
-        <div className="range-container w-100 text-center d-flex flex-column align-items-center">
-          <Form.Label className="range-label blockquote">
+        <div className="position-absolute range-container w-100 text-center d-flex flex-column align-items-center">
+          <Form.Label className="range-label p-0 my-0 blockquote">
             simulation speed
           </Form.Label>
           <Form.Range

@@ -66,6 +66,8 @@ td, th {
 
 .container {
   height: 80%;
+  position: relative;
+  bottom: 2rem;
   transform: scale(0.83)
 }
 
@@ -77,6 +79,10 @@ td, th {
 
 .range-bar {
   transform: rotate(180deg) !important;
+}
+
+.range-container {
+  bottom: 5rem;
 }
 
 .col {
