@@ -12,6 +12,9 @@ export const newDice = () => {
   return Math.ceil(Math.random() * 6);
 };
 
+export const whiteInitital = { color: "white", position: 1 };
+export const blackInitital = { color: "black", position: columnRange * 2 };
+
 export const blackArrivedCoor = {
   1: 1,
   2: 2,

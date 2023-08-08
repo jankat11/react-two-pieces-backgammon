@@ -7,9 +7,7 @@ import {
   bottomBoardCoulumnRange,
 } from "./utility";
 
-const Board = ({ whitePiece, blackPiece }) => {
-
-
+const GameBoard = ({ whitePiece, blackPiece }) => {
   const setPosition = (colIndex) => {
     return (
       <>
@@ -17,7 +15,9 @@ const Board = ({ whitePiece, blackPiece }) => {
           <Piece
             direction={`${colIndex < columnRange + 1 && "0px"}`}
             color={`${
-              whitePiece.position === blackPiece.position ? "purple" : whitePiece.color
+              whitePiece.position === blackPiece.position
+                ? "purple"
+                : whitePiece.color
             }`}
           />
         )}
@@ -25,13 +25,15 @@ const Board = ({ whitePiece, blackPiece }) => {
           <Piece
             direction={`${colIndex < columnRange + 1 && "0px"}`}
             color={`${
-              whitePiece.position === blackPiece.position ? "purple" : blackPiece.color
+              whitePiece.position === blackPiece.position
+                ? "purple"
+                : blackPiece.color
             }`}
           />
         )}
       </>
     );
-  }
+  };
 
   return (
     <Row className="container ">
@@ -82,9 +84,9 @@ const Board = ({ whitePiece, blackPiece }) => {
   );
 };
 
-Board.propTypes = {
+GameBoard.propTypes = {
   whitePiece: PropTypes.object,
   blackPiece: PropTypes.object,
 };
 
-export default Board;
+export default GameBoard;
