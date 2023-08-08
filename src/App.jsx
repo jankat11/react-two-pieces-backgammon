@@ -11,7 +11,7 @@ const App = () => {
   const [blackScore, setBlackScore] = useState(0);
   const [endGame, setEndGame] = useState(false);
   const [dice, setDice] = useState("-");
-
+  const [lastTurn, setLastTurn] = useState("")
 
   const commonProps = {
     setWhiteScore,
@@ -20,6 +20,7 @@ const App = () => {
     setWhitePiece,
     setEndGame,
     setDice,
+    setLastTurn
   };
 
   return (
@@ -37,6 +38,8 @@ const App = () => {
           blackPiece={blackPiece}
           endGame={endGame}
           dice={dice}
+          lastTurn={lastTurn}
+          
         />
       </section>
     </>

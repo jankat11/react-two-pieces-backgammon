@@ -22,6 +22,8 @@ const PlayButtons = ({
   setBlackScore,
   setWhiteScore,
   setDice,
+  lastTurn,
+  setLastTurn,
 }) => {
   const buttonWhite = useRef();
   const buttonBlack = useRef();
@@ -31,7 +33,7 @@ const PlayButtons = ({
   const [render, setRender] = useState(true);
   const [isSimulate, setIsSimulate] = useState(false);
   const [sleep, setSleep] = useState(1);
-  const [lastTurn, setLastTurn] = useState("");
+  
 
   const oneTurn = () => {
     handleWhite();
@@ -181,12 +183,14 @@ PlayButtons.propTypes = {
   blackPiece: PropTypes.object,
   endGame: PropTypes.bool,
   sleep: PropTypes.bool,
+  lastTurn: PropTypes.string,
   setBlackPiece: PropTypes.func,
   setWhitePiece: PropTypes.func,
   setEndGame: PropTypes.func,
   setWhiteScore: PropTypes.func,
   setBlackScore: PropTypes.func,
   setDice: PropTypes.func,
+  setLastTurn: PropTypes.func,
 };
 
 export default PlayButtons;

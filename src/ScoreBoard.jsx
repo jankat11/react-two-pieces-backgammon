@@ -11,6 +11,7 @@ const ScoreBoard = ({
   setWhitePiece,
   setEndGame,
   setDice,
+  setLastTurn
 }) => {
   const total = whiteScore + blackScore;
   const whitePursent = total === 0 ? 0 : (whiteScore / total) * 100;
@@ -23,6 +24,7 @@ const ScoreBoard = ({
     setBlackPiece(blackInitital);
     setWhitePiece(whiteInitital);
     setDice("-");
+    setLastTurn("")
   };
 
   return (
@@ -61,7 +63,8 @@ ScoreBoard.propTypes = {
   setBlackPiece: PropTypes.func,
   setWhitePiece: PropTypes.func,
   setEndGame: PropTypes.func,
-  setDice: PropTypes.func
+  setDice: PropTypes.func,
+  setLastTurn: PropTypes.func,
 };
 
 export default ScoreBoard;

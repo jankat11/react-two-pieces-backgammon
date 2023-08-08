@@ -4,6 +4,10 @@
   background-color: rgba(222, 184, 135, 0.521);
 }
 
+body {
+  height: 100vh;
+}
+
 table td {
   width: 8rem;
 }
@@ -62,6 +66,13 @@ td, th {
 
 .container {
   height: 80%;
+  transform: scale(0.83)
+}
+
+@media (max-width: 1200px) {
+  .container {
+    transform: scale(0.5)
+  }
 }
 
 .range-bar {
