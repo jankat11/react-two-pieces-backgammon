@@ -4,6 +4,12 @@
   background-color: rgba(222, 184, 135, 0.521);
 }
 
+.score .col {
+  background-color: rgba(222, 184, 135, 0.13) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .piece {
   width: 3rem;
   height: 3rem;
@@ -15,6 +21,13 @@
 
 .dice {
   width: 5rem;
+}
+
+
+td, th {
+  padding: 2px 5px;
+  border: solid gray 1px !important;
+  border-radius: 5px !important;
 }
 
 .row {

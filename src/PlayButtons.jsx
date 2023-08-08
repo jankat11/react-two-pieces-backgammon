@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, } from "react";
 import PropTypes from "prop-types";
 import {
   newDice,
@@ -74,7 +74,7 @@ const PlayButtons = ({
   }
 
   return (
-    <article className="button-container d-flex w-100 justify-content-center">
+    <article className="button-container my-3 d-flex w-100 justify-content-center">
       <Button onClick={restartGame} className="btn-secondary m-3"> 
         restart
       </Button>
