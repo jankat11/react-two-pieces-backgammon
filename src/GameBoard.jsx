@@ -36,7 +36,7 @@ const GameBoard = ({ whitePiece, blackPiece }) => {
   };
 
   return (
-    <Row className="container ">
+    <Row className="container">
       <Row className="row p-0">
         {upBoardCoulumnRange.map((col) => {
           return (

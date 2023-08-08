@@ -6,16 +6,25 @@ import {
   columnRange,
   whiteArrivedCoor,
   blackArrivedCoor,
+  whiteInitital,
+  blackInitital,
 } from "./utility";
 
-const PlayButtons = ({whitePiece, blackPiece, setBlackPiece, setWhitePiece}) => {
-  const [dice, setDice] = useState("--");
+const PlayButtons = ({
+  whitePiece,
+  blackPiece,
+  endGame,
+  setBlackPiece,
+  setWhitePiece,
+  setEndGame,
+}) => {
+  const [dice, setDice] = useState("-");
   const buttonWhite = useRef();
   const buttonBlack = useRef();
 
-  useEffect(() => {
+/*   useEffect(() => {
     buttonWhite.current.click();
-  }, []);
+  }, []); */
 
   const handleWhite = () => {
     let newDiceValue = newDice();
@@ -26,6 +35,7 @@ const PlayButtons = ({whitePiece, blackPiece, setBlackPiece, setWhitePiece}) => 
           ...prev,
           color: "green",
         }));
+        setEndGame(true);
         return;
       }
       return;
@@ -45,6 +55,7 @@ const PlayButtons = ({whitePiece, blackPiece, setBlackPiece, setWhitePiece}) => 
           ...prev,
           color: "green",
         }));
+        setEndGame(true);
         return;
       }
       return;
@@ -55,22 +66,40 @@ const PlayButtons = ({whitePiece, blackPiece, setBlackPiece, setWhitePiece}) => 
     }));
   };
 
+  const restartGame = () => {
+    setEndGame(false)
+    setBlackPiece(blackInitital)
+    setWhitePiece(whiteInitital)
+    setDice("-")
+  }
+
   return (
-    <article className="button-container">
-      <p className="m-3 dice blockquote">Dice: {dice}</p>
-      <div className="m-3">
-        <Button
-          ref={buttonWhite}
-          onClick={handleWhite}
-          className="btn-light border"
-        >
-          white
-        </Button>
-      </div>
-      <div className="m-3">
-        <Button ref={buttonBlack} onClick={handleBlack} className="btn-dark">
-          Black
-        </Button>
+    <article className="button-container d-flex w-100 justify-content-center">
+      <Button onClick={restartGame} className="btn-secondary m-3"> 
+        restart
+      </Button>
+      <div className="d-flex  justify-content-center">
+        <p className="m-3 dice blockquote p-1">Dice: {dice}</p>
+        <div className="m-3">
+          <Button
+            disabled={endGame}
+            ref={buttonWhite}
+            onClick={handleWhite}
+            className="btn-light border"
+          >
+            White
+          </Button>
+        </div>
+        <div className="m-3">
+          <Button
+            disabled={endGame}
+            ref={buttonBlack}
+            onClick={handleBlack}
+            className="btn-dark"
+          >
+            Black
+          </Button>
+        </div>
       </div>
     </article>
   );
@@ -79,8 +108,10 @@ const PlayButtons = ({whitePiece, blackPiece, setBlackPiece, setWhitePiece}) => 
 PlayButtons.propTypes = {
   whitePiece: PropTypes.object,
   blackPiece: PropTypes.object,
+  endGame: PropTypes.bool,
   setBlackPiece: PropTypes.function,
-  setWhitePiece: PropTypes.function
+  setWhitePiece: PropTypes.function,
+  setEndGame: PropTypes.function,
 };
 
 export default PlayButtons;

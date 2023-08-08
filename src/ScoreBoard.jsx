@@ -1,6 +1,8 @@
 const ScoreBoard = () => {
   return (
-    <div>ScoreBoard</div>
+    <>
+    <h1>helloo</h1>
+    </>
   )
 }
 export default ScoreBoard
