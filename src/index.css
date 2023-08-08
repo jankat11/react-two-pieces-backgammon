@@ -4,10 +4,8 @@
   background-color: rgba(222, 184, 135, 0.521);
 }
 
-.score .col {
-  background-color: rgba(222, 184, 135, 0.13) !important;
-  padding: 0 !important;
-  margin: 0 !important;
+table td {
+  width: 8rem;
 }
 
 .piece {

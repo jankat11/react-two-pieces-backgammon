@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useState, useRef, } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   newDice,
@@ -17,12 +17,14 @@ const PlayButtons = ({
   setBlackPiece,
   setWhitePiece,
   setEndGame,
+  setBlackScore,
+  setWhiteScore,
 }) => {
   const [dice, setDice] = useState("-");
   const buttonWhite = useRef();
   const buttonBlack = useRef();
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     buttonWhite.current.click();
   }, []); */
 
@@ -36,6 +38,7 @@ const PlayButtons = ({
           color: "green",
         }));
         setEndGame(true);
+        setWhiteScore((prev) => prev + 1);
         return;
       }
       return;
@@ -56,6 +59,7 @@ const PlayButtons = ({
           color: "green",
         }));
         setEndGame(true);
+        setBlackScore((prev) => prev + 1);
         return;
       }
       return;
@@ -67,15 +71,15 @@ const PlayButtons = ({
   };
 
   const restartGame = () => {
-    setEndGame(false)
-    setBlackPiece(blackInitital)
-    setWhitePiece(whiteInitital)
-    setDice("-")
-  }
+    setEndGame(false);
+    setBlackPiece(blackInitital);
+    setWhitePiece(whiteInitital);
+    setDice("-");
+  };
 
   return (
     <article className="button-container my-3 d-flex w-100 justify-content-center">
-      <Button onClick={restartGame} className="btn-secondary m-3"> 
+      <Button onClick={restartGame} className="btn-secondary m-3">
         restart
       </Button>
       <div className="d-flex  justify-content-center">
@@ -109,9 +113,11 @@ PlayButtons.propTypes = {
   whitePiece: PropTypes.object,
   blackPiece: PropTypes.object,
   endGame: PropTypes.bool,
-  setBlackPiece: PropTypes.function,
-  setWhitePiece: PropTypes.function,
-  setEndGame: PropTypes.function,
+  setBlackPiece: PropTypes.func,
+  setWhitePiece: PropTypes.func,
+  setEndGame: PropTypes.func,
+  setWhiteScore: PropTypes.func,
+  setBlackScore: PropTypes.func,
 };
 
 export default PlayButtons;
