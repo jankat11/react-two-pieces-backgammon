@@ -11,6 +11,7 @@ const App = () => {
   const [blackScore, setBlackScore] = useState(0);
   const [endGame, setEndGame] = useState(false);
   const [dice, setDice] = useState("-");
+  const [sleep, setSleep] = useState(3000);
 
   const commonProps = {
     setWhiteScore,

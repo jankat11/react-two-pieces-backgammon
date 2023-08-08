@@ -37,27 +37,31 @@ const PlayButtons = ({
   const counter = useRef();
   const [render, setRender] = useState(true);
   const [isSimulate, setIsSimulate] = useState(false);
-  const [sleep, setSleep] = useState(1)
+  const [sleep, setSleep] = useState(3000);
 
   const oneTurn = () => {
-    handleBlack();
-    if (endGameRef.current.value === "game over") {
-      // await pause(sleep);
-      restartGame();
-      return;
-    }
     handleWhite();
     if (endGameRef.current.value === "game over") {
-      // await pause(sleep);
-      restartGame();
+      //await pause(sleep);
+      return;
+    }
+    handleBlack();
+    if (endGameRef.current.value === "game over") {
+      //await pause(sleep);
       return;
     }
   };
 
   const simulate = async () => {
     await pause(sleep);
-    await oneTurn();
-    setRender((prev) => !prev);
+    if (endGame) {
+      restartGame();
+      setRender((prev) => !prev);
+      return;
+    } else {
+      oneTurn();
+      setRender((prev) => !prev);
+    }
   };
 
   useEffect(() => {
@@ -69,18 +73,14 @@ const PlayButtons = ({
   const handleWhite = () => {
     newDiceValue = newDice();
     setDice(newDiceValue);
-    if (whitePiece.position > (columnRange * 3) / 2) {
-      if (whiteArrivedCoor[newDiceValue] === whitePiece.position) {
-        setWhitePiece((prev) => ({
-          ...prev,
-          color: "green",
-        }));
-        setEndGame(true);
-        setWhiteScore((prev) => prev + 1);
-
-        endGameRef.current.value = "game over";
-        return;
-      }
+    if (whitePiece.position + newDiceValue > columnRange * 2) {
+      setWhitePiece((prev) => ({
+        ...prev,
+        color: "green",
+      }));
+      setEndGame(true);
+      setWhiteScore((prev) => prev + 1);
+      endGameRef.current.value = "game over";
       return;
     }
     setWhitePiece((prev) => ({
@@ -92,17 +92,14 @@ const PlayButtons = ({
   const handleBlack = () => {
     let newDiceValue = newDice();
     setDice(newDiceValue);
-    if (blackPiece.position < columnRange / 2 + 1) {
-      if (blackArrivedCoor[newDiceValue] === blackPiece.position) {
-        setBlackPiece((prev) => ({
-          ...prev,
-          color: "green",
-        }));
-        setEndGame(true);
-        setBlackScore((prev) => prev + 1);
-        endGameRef.current.value = "game over";
-        return;
-      }
+    if (blackPiece.position - newDiceValue < 1) {
+      setBlackPiece((prev) => ({
+        ...prev,
+        color: "green",
+      }));
+      setEndGame(true);
+      setBlackScore((prev) => prev + 1);
+      endGameRef.current.value = "game over";
       return;
     }
     setBlackPiece((prev) => ({
@@ -148,7 +145,7 @@ const PlayButtons = ({
       </div>
       <Button
         ref={simulateRef}
-        onClick={simulate} // () => setIsSimulate(prev => !prev)
+        onClick={() => setIsSimulate((prev) => !prev)} // () => setIsSimulate(prev => !prev)
         className="btn-info m-3"
       >
         {isSimulate ? "STOP" : "SIMULATE"}
