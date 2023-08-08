@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   newDice,
@@ -10,26 +10,64 @@ import {
   blackInitital,
 } from "./utility";
 
+let newDiceValue;
+
+const pause = (time) => {
+  return new Promise((res) => {
+    setTimeout(res, time);
+  });
+};
+
 const PlayButtons = ({
   whitePiece,
   blackPiece,
   endGame,
+  dice,
   setBlackPiece,
   setWhitePiece,
   setEndGame,
   setBlackScore,
   setWhiteScore,
+  setDice,
 }) => {
-  const [dice, setDice] = useState("-");
   const buttonWhite = useRef();
   const buttonBlack = useRef();
+  const endGameRef = useRef();
+  const simulateRef = useRef();
+  const counter = useRef();
+  const [render, setRender] = useState(true);
+  const [isSimulate, setIsSimulate] = useState(false);
+  const [sleep, setSleep] = useState(1)
 
-  /*   useEffect(() => {
-    buttonWhite.current.click();
-  }, []); */
+  const oneTurn = () => {
+    handleBlack();
+    if (endGameRef.current.value === "game over") {
+      // await pause(sleep);
+      restartGame();
+      return;
+    }
+    handleWhite();
+    if (endGameRef.current.value === "game over") {
+      // await pause(sleep);
+      restartGame();
+      return;
+    }
+  };
+
+  const simulate = async () => {
+    await pause(sleep);
+    await oneTurn();
+    setRender((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (isSimulate) {
+      simulate();
+    }
+  }, [render, isSimulate]);
 
   const handleWhite = () => {
-    let newDiceValue = newDice();
+    newDiceValue = newDice();
     setDice(newDiceValue);
     if (whitePiece.position > (columnRange * 3) / 2) {
       if (whiteArrivedCoor[newDiceValue] === whitePiece.position) {
@@ -39,6 +77,8 @@ const PlayButtons = ({
         }));
         setEndGame(true);
         setWhiteScore((prev) => prev + 1);
+
+        endGameRef.current.value = "game over";
         return;
       }
       return;
@@ -60,6 +100,7 @@ const PlayButtons = ({
         }));
         setEndGame(true);
         setBlackScore((prev) => prev + 1);
+        endGameRef.current.value = "game over";
         return;
       }
       return;
@@ -80,7 +121,7 @@ const PlayButtons = ({
   return (
     <article className="button-container my-3 d-flex w-100 justify-content-center">
       <Button onClick={restartGame} className="btn-secondary m-3">
-        restart
+        Restart
       </Button>
       <div className="d-flex  justify-content-center">
         <p className="m-3 dice blockquote p-1">Dice: {dice}</p>
@@ -105,11 +146,21 @@ const PlayButtons = ({
           </Button>
         </div>
       </div>
+      <Button
+        ref={simulateRef}
+        onClick={simulate} // () => setIsSimulate(prev => !prev)
+        className="btn-info m-3"
+      >
+        {isSimulate ? "STOP" : "SIMULATE"}
+      </Button>
+      <input type="hidden" ref={endGameRef} value="continue" />
+      <input type="hidden" value={render} ref={counter} />
     </article>
   );
 };
 
 PlayButtons.propTypes = {
+  dice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   whitePiece: PropTypes.object,
   blackPiece: PropTypes.object,
   endGame: PropTypes.bool,
@@ -118,6 +169,7 @@ PlayButtons.propTypes = {
   setEndGame: PropTypes.func,
   setWhiteScore: PropTypes.func,
   setBlackScore: PropTypes.func,
+  setDice: PropTypes.func,
 };
 
 export default PlayButtons;

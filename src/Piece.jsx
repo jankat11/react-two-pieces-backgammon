@@ -7,8 +7,12 @@ const Piece = ({ color, direction }) => {
   return (
     <article
       style={{ backgroundColor: color, top: direction, left: "4px" }}
-      className={`piece`}
-    ></article>
+      className={`piece piece-${color}`}
+    >
+      <div className="shadow-sm inside-piece position-relative d-flex justify-content-center align-items-center">
+        <div className="dot shadow-lg"></div>
+      </div>
+    </article>
   );
 };
 

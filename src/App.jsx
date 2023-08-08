@@ -10,24 +10,32 @@ const App = () => {
   const [whiteScore, setWhiteScore] = useState(0);
   const [blackScore, setBlackScore] = useState(0);
   const [endGame, setEndGame] = useState(false);
+  const [dice, setDice] = useState("-");
+
+  const commonProps = {
+    setWhiteScore,
+    setBlackScore,
+    setBlackPiece,
+    setWhitePiece,
+    setEndGame,
+    setDice,
+  };
 
   return (
     <>
       <section className={wrapperClass}>
         <ScoreBoard
+          {...commonProps}
           whiteScore={whiteScore}
           blackScore={blackScore}
         />
         <GameBoard whitePiece={whitePiece} blackPiece={blackPiece} />
         <PlayButtons
+          {...commonProps}
           whitePiece={whitePiece}
           blackPiece={blackPiece}
           endGame={endGame}
-          setBlackPiece={setBlackPiece}
-          setWhitePiece={setWhitePiece}
-          setEndGame={setEndGame}
-          setWhiteScore={setWhiteScore}
-          setBlackScore={setBlackScore}
+          dice={dice}
         />
       </section>
     </>
