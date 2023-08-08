@@ -14,21 +14,3 @@ export const newDice = () => {
 
 export const whiteInitital = { color: "white", position: 1 };
 export const blackInitital = { color: "black", position: columnRange * 2 };
-
-export const blackArrivedCoor = {
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
-  6: 6,
-};
-
-export const whiteArrivedCoor = {
-  1: 24,
-  2: 23,
-  3: 22,
-  4: 21,
-  5: 20,
-  6: 19,
-};

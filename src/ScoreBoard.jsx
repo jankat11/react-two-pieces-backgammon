@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import { whiteInitital, blackInitital } from "./utility";
 
 const ScoreBoard = ({
