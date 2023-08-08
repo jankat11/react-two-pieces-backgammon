@@ -110,7 +110,7 @@ const PlayButtons = ({
     setBlackPiece(blackInitital);
     setWhitePiece(whiteInitital);
     setDice("-");
-    setLastTurn("")
+    setLastTurn("");
   };
 
   return (
@@ -125,7 +125,10 @@ const PlayButtons = ({
             max={3000}
             className="w-50 range-bar"
             value={sleep}
-            onChange={(e) => setSleep(e.target.value)}
+            onChange={(e) =>{
+               setSleep(e.target.value)
+               restartGame()
+            }}
           />
         </div>
       )}
