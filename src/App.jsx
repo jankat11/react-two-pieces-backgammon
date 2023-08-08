@@ -1,10 +1,16 @@
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import Board from "./Board";
-import { newDice, wrapperClass } from "./utility";
+import {
+  newDice,
+  wrapperClass,
+  columnRange,
+  whiteArrivedCoor,
+  blackArrivedCoor,
+} from "./utility";
 
 const whiteInitital = { color: "white", position: 1 };
-const blackInitital = { color: "black", position: 24 };
+const blackInitital = { color: "black", position: columnRange * 2 };
 
 const App = () => {
   const [whitePiece, setWhitePiece] = useState(whiteInitital);
@@ -12,9 +18,18 @@ const App = () => {
   const [dice, setDice] = useState("--");
 
   const handleWhite = () => {
-    if (whitePiece.position > 18) return
     let newDiceValue = newDice();
     setDice(newDiceValue);
+    if (whitePiece.position > (columnRange * 3) / 2) {
+      if (whiteArrivedCoor[newDiceValue] === whitePiece.position) {
+        setWhitePiece((prev) => ({
+          ...prev,
+          color: "green",
+        }));
+        return;
+      }
+      return;
+    }
     setWhitePiece((prev) => ({
       ...prev,
       position: prev.position + newDiceValue,
@@ -24,6 +39,16 @@ const App = () => {
   const handleBlack = () => {
     let newDiceValue = newDice();
     setDice(newDiceValue);
+    if (blackPiece.position < columnRange / 2 + 1) {
+      if (blackArrivedCoor[newDiceValue] === blackPiece.position) {
+        setBlackPiece((prev) => ({
+          ...prev,
+          color: "green",
+        }));
+        return;
+      }
+      return;
+    }
     setBlackPiece((prev) => ({
       ...prev,
       position: prev.position - newDiceValue,
@@ -35,7 +60,7 @@ const App = () => {
       <section className={wrapperClass}>
         <Board whitePiece={whitePiece} blackPiece={blackPiece} />
         <article className="button-container">
-          <p className="m-3 dice">dice: {dice}</p>
+          <p className="m-3 dice blockquote">Dice: {dice}</p>
           <div className="m-3">
             <Button onClick={handleWhite} className="btn-light border">
               white

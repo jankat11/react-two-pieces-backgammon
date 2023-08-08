@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const Piece = ({ color, direction }) => {
-  useEffect(() => {
-  }, [color]);
+  useEffect(() => {}, [color]);
 
   return (
     <article
@@ -15,7 +14,7 @@ const Piece = ({ color, direction }) => {
 
 Piece.propTypes = {
   color: PropTypes.string.isRequired,
-  direction: PropTypes.string
+  direction: PropTypes.string,
 };
 
 export default Piece;

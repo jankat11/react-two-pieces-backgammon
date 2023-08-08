@@ -17,7 +17,7 @@ const Board = ({ whitePiece, blackPiece }) => {
           <Piece
             direction={`${colIndex < columnRange + 1 && "0px"}`}
             color={`${
-              whitePiece.position === blackPiece.position ? "purple" : "white"
+              whitePiece.position === blackPiece.position ? "purple" : whitePiece.color
             }`}
           />
         )}
@@ -25,7 +25,7 @@ const Board = ({ whitePiece, blackPiece }) => {
           <Piece
             direction={`${colIndex < columnRange + 1 && "0px"}`}
             color={`${
-              whitePiece.position === blackPiece.position ? "purple" : "black"
+              whitePiece.position === blackPiece.position ? "purple" : blackPiece.color
             }`}
           />
         )}
