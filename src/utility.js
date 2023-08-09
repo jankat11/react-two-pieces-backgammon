@@ -9,7 +9,7 @@ export const bottomBoardCoulumnRange = Array.from(
   (_, i) => i + 1 + columnRange
 );
 export const newDice = () => {
-  return Math.ceil(Math.random() * 6);
+  return Math.floor(Math.random() * 6 + 1);
 };
 
 export const whiteInitital = { color: "white", position: 1 };
