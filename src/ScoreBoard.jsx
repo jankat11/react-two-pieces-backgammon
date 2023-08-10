@@ -28,7 +28,7 @@ const ScoreBoard = ({
   };
 
   return (
-    <section className="score my-3 blockquote d-flex w-100 justify-content-center">
+    <section className="score mt-1 mb-1 me-3 blockquote d-flex w-100 justify-content-center">
       <Button onClick={clearScores} className="me-5 m-5 btn-secondary">
         Clear All Scores
       </Button>

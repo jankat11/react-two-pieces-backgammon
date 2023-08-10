@@ -33,7 +33,6 @@ const PlayButtons = ({
   const [render, setRender] = useState(true);
   const [isSimulate, setIsSimulate] = useState(false);
   const [sleep, setSleep] = useState(1);
-  
 
   const oneTurn = () => {
     handleWhite();
@@ -125,16 +124,20 @@ const PlayButtons = ({
             max={3000}
             className="w-50 range-bar"
             value={sleep}
-            onChange={(e) =>{
-               setSleep(e.target.value)
-               restartGame()
+            onChange={(e) => {
+              setSleep(e.target.value);
+              restartGame();
             }}
           />
         </div>
       )}
-      <div className="d-flex w-100 justify-content-center">
-        <Button onClick={restartGame} className="btn-secondary m-3">
-          Restart
+      <div className="d-flex w-100 alt-btns justify-content-center align-items-center flex-column">
+        <Button
+          ref={simulateRef}
+          onClick={() => setIsSimulate((prev) => !prev)}
+          className="btn-info my-3 simulate-btn w-75"
+        >
+          {isSimulate ? "STOP" : "SIMULATE"}
         </Button>
         <div className="d-flex  justify-content-center">
           <div className="dice-container position-relative">
@@ -166,12 +169,8 @@ const PlayButtons = ({
             </Button>
           </div>
         </div>
-        <Button
-          ref={simulateRef}
-          onClick={() => setIsSimulate((prev) => !prev)}
-          className="btn-info m-3 simulate-btn"
-        >
-          {isSimulate ? "STOP" : "SIMULATE"}
+        <Button onClick={restartGame} className="btn-secondary my-3 w-75">
+          Restart
         </Button>
       </div>
       <input type="hidden" ref={endGameRef} value="continue" />
